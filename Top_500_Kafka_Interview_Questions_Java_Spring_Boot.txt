@@ -1,0 +1,566 @@
+TOP 500 APACHE KAFKA INTERVIEW QUESTIONS
+Java + Spring Boot | 5+ Years Experience | Service-Based Company Preparation
+
+Note: Curated interview-preparation questions, not a verified statistical ranking by company.
+
+Kafka Fundamentals and Architecture (1-25)
+------------------------------------------
+1. What is Apache Kafka, and why is it used in microservices?
+2. Compare Kafka with RabbitMQ for event-driven systems.
+3. Compare Kafka with ActiveMQ.
+4. Compare Kafka with REST-based synchronous communication.
+5. Explain Kafka's distributed architecture.
+6. Explain producers, consumers, brokers, topics, and partitions.
+7. Why is Kafka described as a distributed commit log?
+8. What is event-driven architecture, and how does Kafka support it?
+9. Distinguish a message queue from an event-streaming platform.
+10. How does Kafka achieve high throughput?
+11. How does Kafka provide fault tolerance?
+12. What is the difference between an event, a command, and a message?
+13. What fields can a Kafka record contain?
+14. Describe the end-to-end flow of a Kafka message.
+15. What are Kafka's main advantages and limitations?
+16. When is Kafka not the right technology choice?
+17. Can Kafka support request-response communication?
+18. Compare event streaming with traditional messaging.
+19. How does Kafka help decouple microservices?
+20. What is the difference between a topic and a queue?
+21. What is log-based messaging?
+22. How does the operating system page cache help Kafka?
+23. Why are sequential disk writes efficient?
+24. Give real-world Kafka use cases in financial systems.
+25. Describe a Kafka use case in a Spring Boot application.
+
+Brokers, Clusters and Controllers (26-50)
+-----------------------------------------
+26. What is a Kafka broker?
+27. What responsibilities does a broker perform?
+28. Can a Kafka cluster run with one broker?
+29. How are partitions distributed across brokers?
+30. What happens when a broker fails?
+31. What is the Kafka controller?
+32. How does a controller differ from a broker?
+33. What is KRaft mode?
+34. How does KRaft differ from ZooKeeper mode?
+35. What is the KRaft metadata quorum?
+36. What is the metadata log?
+37. How do brokers discover one another?
+38. What are broker.id and node.id?
+39. What is advertised.listeners?
+40. How do listeners differ from advertised.listeners?
+41. How would you configure Kafka for Docker clients?
+42. What is a bootstrap server?
+43. Must clients communicate with every broker through bootstrap servers?
+44. What happens if a bootstrap server becomes unavailable after metadata discovery?
+45. How do you add a broker to a cluster?
+46. Does adding a broker automatically rebalance existing partitions?
+47. How do you safely decommission a broker?
+48. What is rack awareness?
+49. How would you investigate repeated broker restarts?
+50. Design a highly available multi-zone Kafka cluster.
+
+Topics, Partitions and Offsets (51-75)
+--------------------------------------
+51. What is a Kafka topic?
+52. What is a partition, and why is it used?
+53. How do topics relate to partitions?
+54. What is a partition offset?
+55. Are offsets unique across a topic or only within a partition?
+56. How does Kafka choose a partition for a record?
+57. What happens when a producer sends a record without a key?
+58. How does a record key affect partition selection?
+59. How do partition count and replication factor differ?
+60. Can you increase the partition count of an existing topic?
+61. Can you decrease a topic's partition count directly?
+62. What happens to key distribution after increasing partitions?
+63. How do you choose a topic's partition count?
+64. What are the risks of too many partitions?
+65. How does partition count limit consumer parallelism?
+66. Can two consumers in one group consume one partition simultaneously?
+67. How does a committed consumer offset differ from a topic offset?
+68. What are earliest and latest offsets?
+69. What is a log segment?
+70. What does log.segment.bytes control?
+71. When does Kafka roll a log segment?
+72. What is log compaction?
+73. Compare log compaction with time-based retention.
+74. How would you configure retention for audit events?
+75. How would you configure a latest-state topic?
+
+Producers and Message Delivery (76-100)
+---------------------------------------
+76. What is a Kafka producer?
+77. Describe the lifecycle of a produced record.
+78. What does bootstrap.servers configure for a producer?
+79. Explain acks=0, acks=1, and acks=all.
+80. How do acknowledgements affect durability?
+81. What does the retries setting do?
+82. How does delivery.timeout.ms work?
+83. What does request.timeout.ms control?
+84. What does max.block.ms control?
+85. What is batch.size?
+86. How does linger.ms affect throughput and latency?
+87. What is producer buffering?
+88. What does buffer.memory control?
+89. What happens when the producer buffer is full?
+90. What does max.in.flight.requests.per.connection control?
+91. What is producer idempotence?
+92. How do you enable idempotent production?
+93. How does a producer handle transient broker failures?
+94. Compare synchronous and asynchronous sends.
+95. How should producer callback exceptions be handled?
+96. Distinguish a send failure from a delivery timeout.
+97. How does compression affect producer performance?
+98. Compare record and batch compression.
+99. How do you send a record to a specific partition?
+100. Design a reliable producer for an order service.
+
+Consumers and Consumer Groups (101-125)
+---------------------------------------
+101. What is a Kafka consumer?
+102. What is a consumer group?
+103. How are partitions assigned to group members?
+104. What happens when consumers outnumber partitions?
+105. Can independent consumer groups read the same topic?
+106. What is group.id?
+107. What is a group coordinator?
+108. What is a consumer heartbeat?
+109. What does session.timeout.ms control?
+110. What does heartbeat.interval.ms control?
+111. What does max.poll.interval.ms control?
+112. What happens if a consumer stops polling for too long?
+113. Compare poll() and commitSync().
+114. Compare automatic and manual offset commits.
+115. What does enable.auto.commit control?
+116. What risks arise from committing before processing finishes?
+117. What if processing succeeds but offset commit fails?
+118. How do you implement at-least-once processing?
+119. What is at-most-once processing?
+120. How does consumer lag differ from committed offset?
+121. How do you reset a group's offsets?
+122. Compare earliest, latest, and none for auto.offset.reset.
+123. Does auto.offset.reset=earliest replay records on every restart?
+124. What if a committed offset is outside the retained log range?
+125. How do you debug a live but idle consumer?
+
+Replication and ISR (126-150)
+-----------------------------
+126. What is partition replication?
+127. What is a partition leader?
+128. What is a follower replica?
+129. What is the ISR set?
+130. How does a follower catch up with a leader?
+131. What does replication.factor configure?
+132. What is min.insync.replicas?
+133. How do acks=all and min.insync.replicas work together?
+134. What if the ISR falls below min.insync.replicas?
+135. What is leader election?
+136. Compare clean and unclean leader election.
+137. What risks come with unclean leader election?
+138. What is the high watermark?
+139. What is the log end offset?
+140. How do high watermark and log end offset differ?
+141. What happens when a partition leader fails?
+142. How does Kafka recover a returning broker?
+143. What is replica lag?
+144. How do you debug a replica falling out of ISR?
+145. What is preferred leader election?
+146. What is partition reassignment?
+147. How do you rebalance replicas across brokers?
+148. What is rack-aware replica assignment?
+149. How would you configure replication across three zones?
+150. Can Kafka guarantee zero data loss under every failure?
+
+Serialization, Schemas and Avro (151-175)
+-----------------------------------------
+151. What is serialization in Kafka?
+152. Why must producer and consumer serialization formats agree?
+153. What do key.serializer and value.serializer configure?
+154. What do key.deserializer and value.deserializer configure?
+155. Compare StringSerializer and ByteArraySerializer.
+156. Compare JSON and Avro payloads.
+157. What is Apache Avro?
+158. What is a message schema?
+159. What is a schema registry?
+160. Why is schema evolution important?
+161. What is backward compatibility?
+162. What is forward compatibility?
+163. What is full compatibility?
+164. What happens when a new consumer reads an old schema?
+165. What happens when an old consumer reads a new schema?
+166. How do you safely add an Avro field?
+167. Why are Avro default values important?
+168. Compare nullable fields with defaulted fields.
+169. How does Schema Registry identify serialized schemas?
+170. How do you configure an Avro producer in Spring Boot?
+171. How do you configure an Avro consumer in Spring Boot?
+172. How do you handle malformed JSON?
+173. What is a custom serializer?
+174. When should you implement a custom deserializer?
+175. How do you evolve an order-event schema without breaking consumers?
+
+Spring Boot and Spring Kafka (176-200)
+--------------------------------------
+176. What is Spring for Apache Kafka?
+177. What benefits does Spring Kafka provide?
+178. What is KafkaTemplate?
+179. How do you configure Kafka in application.yml?
+180. What does spring.kafka.bootstrap-servers configure?
+181. How do you configure producer properties in Spring Boot?
+182. How do you configure consumer properties in Spring Boot?
+183. What is @KafkaListener?
+184. How do you set a topic and group on @KafkaListener?
+185. What is ConcurrentKafkaListenerContainerFactory?
+186. How does KafkaTemplate.send() behave?
+187. How do you retrieve an asynchronous send result?
+188. What is ConsumerRecord?
+189. What is Acknowledgment in Spring Kafka?
+190. How do you configure manual acknowledgment?
+191. Compare record and batch listener modes.
+192. How do you configure listener concurrency?
+193. How does listener concurrency relate to partition count?
+194. How do you send keys, headers, and timestamps with KafkaTemplate?
+195. How do you read Kafka headers in a listener?
+196. What is a message converter?
+197. What is DefaultKafkaConsumerFactory?
+198. How do you configure multiple producer and consumer factories?
+199. How do you integration-test a Spring Kafka producer and consumer?
+200. How would you build reusable Kafka configuration for microservices?
+
+Retries and Error Handling (201-225)
+------------------------------------
+201. What happens when a Kafka listener throws an exception?
+202. How does Spring Kafka handle listener exceptions?
+203. What is DefaultErrorHandler?
+204. How do you configure retry attempts?
+205. Compare in-consumer retries with retry topics.
+206. What is exponential backoff?
+207. Why should retries be bounded?
+208. How do you classify retryable exceptions?
+209. How do you handle database outages during processing?
+210. What is a dead-letter topic?
+211. Compare a DLT with a retry topic.
+212. What is DeadLetterPublishingRecoverer?
+213. How do you preserve original keys and headers in a DLT?
+214. How do you replay DLT messages safely?
+215. How do you prevent poison messages blocking a partition?
+216. What is a poison pill?
+217. What if deserialization fails before listener invocation?
+218. What is ErrorHandlingDeserializer?
+219. How do you handle intermittent failures without losing records?
+220. What is a retry storm, and how can it be prevented?
+221. How do you implement delayed retries?
+222. Compare retry-in-place with retry topics.
+223. How do you prevent duplicate database updates on retry?
+224. How do you monitor retry counts and DLT volume?
+225. Design error handling for a payment consumer.
+
+Transactions and Exactly-Once Processing (226-250)
+--------------------------------------------------
+226. What is a Kafka transaction?
+227. Compare Kafka transactions with database transactions.
+228. What does transactional.id configure?
+229. What is a transactional producer?
+230. What does initTransactions() do?
+231. Explain beginTransaction(), commitTransaction(), and abortTransaction().
+232. Compare idempotence and transactions.
+233. Compare at-least-once delivery with exactly-once processing.
+234. What does Kafka exactly-once semantics guarantee?
+235. What does isolation.level=read_committed do?
+236. What happens to aborted transactional records?
+237. How are uncommitted records hidden from consumers?
+238. How can offsets be committed within a Kafka transaction?
+239. Compare Kafka-to-Kafka and Kafka-to-database exactly-once processing.
+240. Does Kafka EOS make database writes exactly once automatically?
+241. How do you make database writes idempotent?
+242. What is the transactional outbox pattern?
+243. What is the dual-write problem?
+244. How does an outbox prevent lost events?
+245. What is CDC, and how can it publish an outbox?
+246. How do you prevent duplicate payment processing after restart?
+247. How do you handle transaction timeouts?
+248. What are transactional producer fencing errors?
+249. How do you coordinate output records and consumed offsets?
+250. Design a reliable payment event workflow.
+
+Kafka Streams (251-275)
+-----------------------
+251. What is Kafka Streams?
+252. Compare Kafka Streams with a regular consumer.
+253. Compare Kafka Streams with Apache Flink.
+254. What is a KStream?
+255. What is a KTable?
+256. What is a GlobalKTable?
+257. Compare KStream and KTable semantics.
+258. What is a state store?
+259. What is a changelog topic?
+260. What is a repartition topic?
+261. What is a stream-stream join?
+262. What is a stream-table join?
+263. What is a windowed aggregation?
+264. Compare tumbling, hopping, and session windows.
+265. What is event time?
+266. What is processing time?
+267. What is a grace period for late events?
+268. What is a Kafka Streams topology?
+269. What does exactly-once processing mean in Kafka Streams?
+270. How does Kafka Streams restore local state?
+271. What are Interactive Queries?
+272. How do you scale a Kafka Streams application?
+273. What happens when a Streams instance fails?
+274. How do you test a Streams topology?
+275. When would you choose Kafka Streams over a custom consumer?
+
+Kafka Connect and Data Integration (276-300)
+--------------------------------------------
+276. What is Kafka Connect?
+277. Compare Kafka Connect with a custom Kafka consumer.
+278. What is a source connector?
+279. What is a sink connector?
+280. What is a connector task?
+281. Compare standalone and distributed mode.
+282. What are config, offset, and status topics?
+283. What is a connector converter?
+284. What is a Single Message Transform (SMT)?
+285. How do you configure a JDBC source connector?
+286. How do you configure a database sink connector?
+287. What is change data capture?
+288. How does Debezium integrate with Kafka?
+289. What is the role of schema history in CDC?
+290. How do connector offsets work?
+291. How does distributed Connect handle worker failure?
+292. How do you scale connector tasks?
+293. What happens if a sink system is unavailable?
+294. How do you handle poison records in a sink connector?
+295. How do you secure connector credentials?
+296. How do you monitor connector health?
+297. How do you deploy connector configuration safely?
+298. How does a connector differ from a task?
+299. How do you prevent duplicate writes in a sink?
+300. When should you use Connect instead of application code?
+
+Performance and Optimization (301-325)
+--------------------------------------
+301. What metrics determine Kafka throughput?
+302. What factors affect producer latency?
+303. How do batch size and linger affect throughput?
+304. How do you choose compression settings?
+305. What is consumer fetch size?
+306. What do fetch.min.bytes and fetch.max.wait.ms control?
+307. What does max.poll.records control?
+308. How do you tune producer buffer memory?
+309. How do you tune consumer concurrency?
+310. How can too many partitions hurt performance?
+311. What is the impact of large messages?
+312. How do you handle records larger than the default message limit?
+313. Why should broker, topic, and client message-size settings be aligned?
+314. What is zero-copy transfer?
+315. How does the page cache improve performance?
+316. How do disk IOPS affect Kafka?
+317. How do network bandwidth and latency affect throughput?
+318. What is consumer lag, and how can you reduce it?
+319. How do you identify a slow consumer?
+320. How do you benchmark a Kafka cluster?
+321. What is backpressure in event processing?
+322. How do you optimize high-volume JSON serialization?
+323. When should you use batching?
+324. How do you balance latency against throughput?
+325. Describe a methodical Kafka performance-tuning process.
+
+Security and Access Control (326-350)
+-------------------------------------
+326. What security mechanisms does Kafka support?
+327. What is TLS encryption in transit?
+328. What is SASL authentication?
+329. Compare SASL/SCRAM and SASL/OAUTHBEARER.
+330. What is mutual TLS?
+331. What is an access control list (ACL)?
+332. How do you grant a producer permission to write to a topic?
+333. How do you grant a consumer permission to read a topic?
+334. What permissions are needed for a consumer group?
+335. How do you restrict access between microservices?
+336. How do you rotate Kafka credentials?
+337. How do you manage secrets in Spring Boot?
+338. What is encryption at rest?
+339. How do you secure inter-broker communication?
+340. How do you troubleshoot SASL authentication failures?
+341. How do you troubleshoot TLS certificate errors?
+342. What is least-privilege access for Kafka?
+343. How do you audit administrative operations?
+344. How do you secure Schema Registry?
+345. How do you avoid exposing secrets in logs?
+346. How do you configure Spring Kafka with SASL_SSL?
+347. Compare authentication and authorization.
+348. How do ACLs differ from application-level authorization?
+349. How do you secure Kafka Connect workers?
+350. Design a security model for production Kafka.
+
+Monitoring and Production Troubleshooting (351-375)
+---------------------------------------------------
+351. What Kafka broker metrics should be monitored?
+352. What producer metrics indicate trouble?
+353. What consumer metrics indicate trouble?
+354. What is consumer lag, and how is it measured?
+355. How do you investigate rising consumer lag?
+356. How do you investigate under-replicated partitions?
+357. What does offline partition count indicate?
+358. How do you investigate request-handler saturation?
+359. How do you identify disk capacity pressure?
+360. How do you troubleshoot broker network errors?
+361. What causes frequent consumer rebalances?
+362. How do you diagnose a rebalance loop?
+363. How do you investigate producer timeouts?
+364. How do you debug deserialization errors?
+365. How do you detect a stuck consumer?
+366. What is JMX, and how can Kafka expose metrics?
+367. How do Prometheus and Grafana help monitor Kafka?
+368. What alerts should be configured for production?
+369. How do you correlate application logs with Kafka records?
+370. What is the role of record keys in tracing?
+371. How do you investigate duplicate messages?
+372. How do you investigate apparent message loss?
+373. What should a broker-outage runbook contain?
+374. What metrics help identify slow disk or network?
+375. Describe a production incident caused by Kafka and how you would resolve it.
+
+Microservices and Event-Driven Design (376-400)
+-----------------------------------------------
+376. How does Kafka decouple Spring Boot microservices?
+377. How do you choose event boundaries between services?
+378. What is event choreography?
+379. Compare choreography and orchestration.
+380. What is eventual consistency?
+381. How do you handle eventual consistency in an order workflow?
+382. What is the saga pattern?
+383. How can Kafka support a saga?
+384. What is the transactional outbox pattern?
+385. What is CDC-based event publishing?
+386. How do you version domain events?
+387. How do you handle backward compatibility across services?
+388. How do you prevent tight coupling through event schemas?
+389. How should a service react to an event it does not recognize?
+390. How do you handle duplicate domain events?
+391. How do you design an order-created event?
+392. How do you coordinate inventory and payment services?
+393. How do you handle compensation after a downstream failure?
+394. How do you propagate correlation IDs?
+395. How do you trace an event across several services?
+396. How do you isolate consumer failures between services?
+397. How do you manage topic ownership in a large organization?
+398. How do you design replay-safe event consumers?
+399. When should a service publish a command versus an event?
+400. Design an event-driven e-commerce architecture using Spring Boot and Kafka.
+
+Ordering, Idempotency and Deduplication (401-425)
+-------------------------------------------------
+401. Does Kafka guarantee message ordering?
+402. Within what scope is ordering guaranteed?
+403. How do keys preserve per-entity ordering?
+404. What happens when records use different partitions?
+405. How do retries affect ordering?
+406. How does idempotent production prevent duplicates?
+407. Can a consumer receive the same record more than once?
+408. What is an idempotent consumer?
+409. How do you implement a deduplication table?
+410. How do unique database constraints help deduplication?
+411. What is an idempotency key?
+412. How do you make payment-event processing idempotent?
+413. How do you handle duplicate events after a rebalance?
+414. How do you handle out-of-order updates?
+415. What is sequence-number validation?
+416. How does partition expansion affect key ordering?
+417. How do you preserve ordering across retry topics?
+418. How do you deal with duplicate DLT replay?
+419. Should a consumer commit before or after processing?
+420. How do you coordinate database transactions with offset commits?
+421. Distinguish duplicate delivery from duplicate business effect.
+422. How do you design replay-safe consumers?
+423. What are the limits of exactly-once semantics across external systems?
+424. How do you detect gaps in per-entity event sequences?
+425. Design idempotent order processing in Spring Boot.
+
+Advanced Kafka Internals (426-450)
+----------------------------------
+426. What is the log end offset?
+427. What is the high watermark?
+428. What is the last stable offset?
+429. How do transactions affect the last stable offset?
+430. What is a control batch?
+431. What is the consumer group protocol?
+432. Compare eager and cooperative rebalancing.
+433. What is the cooperative-sticky assignor?
+434. What is static group membership?
+435. What is the purpose of group.instance.id?
+436. What is incremental cooperative assignment?
+437. What is a leader epoch?
+438. How does Kafka detect divergent replicas?
+439. What is log truncation during replica recovery?
+440. What is the purpose of producer IDs and sequence numbers?
+441. What is a producer epoch?
+442. What is fencing, and why is it important?
+443. How does Kafka metadata propagate to clients?
+444. What is a metadata refresh?
+445. Compare retention and compaction cleanup policies.
+446. How does tombstone-based deletion work in compacted topics?
+447. What is the impact of segment.ms?
+448. What is unclean shutdown recovery?
+449. What is the role of quotas in Kafka?
+450. How does a record become visible to a read_committed consumer?
+
+Scenario-Based Interview Questions (451-475)
+--------------------------------------------
+451. Consumer lag rises sharply after a deployment; how do you investigate?
+452. A broker goes down during peak traffic; what happens and what do you check?
+453. Messages appear duplicated in a database; how do you find the cause?
+454. A producer reports timeout but the record may have been written; how do you handle it?
+455. A consumer repeatedly reprocesses one record; how do you recover?
+456. One partition is much busier than others; how do you fix the hot partition?
+457. A listener's database call takes 90 seconds; how do you prevent group instability?
+458. Messages are delayed although brokers are healthy; how do you isolate the bottleneck?
+459. A schema change breaks an older service; how do you recover and prevent recurrence?
+460. An invalid message blocks processing; how do you route it safely?
+461. Kafka rejects writes due to insufficient ISR; what do you inspect?
+462. Consumers rebalance every few seconds; what are likely causes?
+463. A DLT has thousands of records; how do you replay them safely?
+464. An application commits offsets before a database transaction completes; what is the risk?
+465. An order event is published but the database transaction rolls back; how do you prevent this?
+466. Two services update the same entity from different events; how do you manage ordering?
+467. A consumer is healthy but receives no records; what do you verify?
+468. Disk usage grows until brokers are nearly full; how do you respond?
+469. One availability zone becomes unreachable; what behavior do you expect?
+470. Production throughput falls after enabling TLS; how do you measure and tune it?
+471. An Avro consumer fails after deployment; how do you inspect schema compatibility?
+472. A retry topic causes events to be processed out of order; what design changes help?
+473. A payment provider times out after charging the customer; how do you avoid a duplicate charge?
+474. A topic needs more partitions without disrupting consumers; how do you plan the change?
+475. Design a resilient order, inventory, and payment workflow.
+
+Java Coding, Design and Project Discussion (476-500)
+----------------------------------------------------
+476. Write a Spring Boot Kafka producer using KafkaTemplate.
+477. Write a @KafkaListener that consumes an OrderCreated event.
+478. Write a producer callback that handles success and failure.
+479. Implement manual acknowledgment in a Spring Kafka listener.
+480. Create a DTO and JSON serialization configuration for an event.
+481. Write a consumer that validates incoming event fields.
+482. Implement a retryable service method for transient database failures.
+483. Configure a dead-letter topic for failed listener records.
+484. Write a custom ErrorHandler or DefaultErrorHandler configuration.
+485. Implement idempotent event processing using a database unique key.
+486. Write code to propagate a correlation ID through Kafka headers.
+487. Create a KafkaTemplate method that sends a record with a key and headers.
+488. Write an integration test for a producer and consumer.
+489. How would you test a listener without starting a real Kafka cluster?
+490. How would you use Testcontainers for Kafka integration tests?
+491. Write a consumer that handles malformed payloads safely.
+492. Implement a transactional producer in Spring Kafka.
+493. How would you commit consumed offsets with produced records?
+494. Design an outbox publisher for a Spring Boot service.
+495. How would you configure separate Kafka clusters for different environments?
+496. Explain the Kafka architecture in your current project.
+497. Describe a production issue you solved involving Kafka.
+498. How do you decide topic names, keys, partitions, and retention in a project?
+499. How do you deploy Kafka configuration changes safely?
+500. Design a complete Spring Boot microservice integration using Kafka, retries, DLT, and observability.
+
+Total questions: 500
