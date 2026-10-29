@@ -69,6 +69,9 @@ IMP 19. Find the smallest window substring containing all characters of another 
 42. Find Sum of given integer 1234 using String
 
 
----
-
-Note: the original document had gaps in its numbering (e.g., jumping from 2 to 4, 9 to 12, etc.) — meaning some questions from the full 1–100 set weren't included in what you pasted. I renumbered only what was actually present, 1 through 54, in the same category order as given. Let me know if you'd like me to fill in the missing questions (e.g., #3, #5, #7, #10, #11...) to complete the full set, or convert this into a study file.
+1. create thread and execute multithreaded program
+2. set name,priority of thread .
+3. demonstrate deadlock
+4. small programm for notify
+5. Volatile Keyword program
+6. thread Local
