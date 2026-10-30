@@ -10,7 +10,7 @@ public class App {
             local.remove();
 
         },"Thread 1");
-        //t1.setDaemon(true);
+        //   t1.setDaemon(true);
         t1.start();
 
     }
