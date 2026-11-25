@@ -10,7 +10,6 @@ public class App {
         int max=Integer.MIN_VALUE;
 
         for(int i=0;i<array.length;i++){
-
             if(array[i]<min){
                 min=array[i];            
             }

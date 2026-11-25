@@ -1,0 +1,37 @@
+23 November
+
+method overload->https://master-java.hashnode.dev/method-overloading-and-overriding-in-java?utm_source=hashnode&utm_medium=feed
+method overriding->https://sridharblogs.hashnode.dev/complete-guide-to-method-overriding-in-java
+UP& DownCasting->https://egenedy.hashnode.dev/mastering-upcasting-and-downcasting-in-java-real-world-scenarios-explained?utm_source=hashnode&utm_medium=feed
+Optionals->https://stackabuse.com/guide-to-optional-in-java-8/
+Abstract Class & Interfaces-> https://tayjava.com/technologies/inheritance-and-polymorphism-in-java
+24 November
+String Exception, Next5
+
+25November
+Mutithreading Next 5
+
+26
+Lambda ,Method ReferencesNext 5
+
+Metod ref->https://stackabuse.com/method-references-in-java-8/
+27->rev
+28,29->collection
+30->Stream
+1->Stream
+2->Stream
+3,4,5->concurrency
+6->Concurent collection
+7->Concurrent Collection
+8->IO
+9->JVM internal 
+10->JVM internal
+11->Memory GC
+12->Reflection
+13,14,15->LTS features
+16-24->Spring & Springboot
+25-3->JPA & Hibernate with SQL
+4-15->Microservice
+15-25->Security
+
+
