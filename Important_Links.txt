@@ -8,6 +8,9 @@ Abstract Class & Interfaces-> https://tayjava.com/technologies/inheritance-and-p
 24 November
 String Exception, Next5
 
+
+https://medium.com/engineering-playbook/senior-java-spring-boot-production-debugging-25-failures-every-backend-engineer-must-master-b5aa6988cfc2
+
 25November
 Mutithreading Next 5
 

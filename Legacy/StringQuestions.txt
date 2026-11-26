@@ -75,3 +75,10 @@ IMP 19. Find the smallest window substring containing all characters of another 
 4. small programm for notify
 5. Volatile Keyword program
 6. thread Local
+
+Abstract class in java 
+Marker Interface in Java
+Difference Between Abstract Class And Interface in Java
+Interface Default Methods in Java
+Interface Static Methods in Java
+Private Methods in Java Interface
